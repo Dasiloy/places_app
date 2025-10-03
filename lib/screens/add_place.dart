@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddPlace extends StatefulWidget {
+import 'package:places_app/providers/place_provider.dart';
+
+class AddPlace extends ConsumerStatefulWidget {
   const AddPlace({super.key});
 
   @override
-  State<AddPlace> createState() => _AddPlaceState();
+  ConsumerState<AddPlace> createState() => _AddPlaceState();
 }
 
-class _AddPlaceState extends State<AddPlace> {
+class _AddPlaceState extends ConsumerState<AddPlace> {
   late String _title;
   final _formKey = GlobalKey<FormState>();
 
   _onAddPlace() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      Navigator.of(context).pop(_title);
+      ref.read(placesProvider.notifier).addPlace(_title);
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("$_title added to list")));
+      Navigator.pop(context);
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import "package:places_app/screens/places.dart";
@@ -9,7 +10,7 @@ final kcolorScheme = ColorScheme.fromSeed(
   surface: const Color.fromARGB(255, 66, 49, 52),
 );
 
-final theme = ThemeData().copyWith(
+final kTheme = ThemeData().copyWith(
   scaffoldBackgroundColor: kcolorScheme.surface,
   colorScheme: kcolorScheme,
   textTheme: GoogleFonts.ubuntuCondensedTextTheme().copyWith(
@@ -20,7 +21,7 @@ final theme = ThemeData().copyWith(
 );
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Great Places',
-      theme: theme,
+      theme: kTheme,
       home: const PlacesScreen(),
     );
   }
