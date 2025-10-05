@@ -64,7 +64,7 @@ class _AddPlaceState extends ConsumerState<AddPlace> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: _onAddPlace,
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.check),
       ),
     );
   }

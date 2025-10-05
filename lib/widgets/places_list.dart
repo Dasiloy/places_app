@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:places_app/models/place.dart';
+import "package:places_app/screens/place_detail.dart";
 
 class PlacesList extends StatelessWidget {
   final List<Place> places;
@@ -43,7 +44,11 @@ class PlacesList extends StatelessWidget {
           size: 16,
         ),
         onTap: () {
-          // Handle tap event
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (ctx) => PlaceDetail(place: places[index]),
+            ),
+          );
         },
       ),
     );
